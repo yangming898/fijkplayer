@@ -23,15 +23,29 @@ class _VideoScreenState extends State<VideoScreen> {
     super.initState();
     player.setOption(FijkOption.hostCategory, "enable-snapshot", 1);
     player.setOption(FijkOption.playerCategory, "mediacodec-all-videos", 1);
+
     startPlay();
   }
 
   void startPlay() async {
     await player.setOption(FijkOption.hostCategory, "request-screen-on", 1);
-    await player.setOption(FijkOption.hostCategory, "request-audio-focus", 1);
+    await player.setOption(FijkOption.playerCategory, "mediacodec", 0);
+    await player.setOption(FijkOption.hostCategory, "request-audio-focus", 0);
+    await player.setOption(FijkOption.formatCategory, "rtsp_transport", "tcp");
+    await player.setOption(
+        FijkOption.formatCategory, "rtsp_flags", "prefer_tcp");
+    await player.setOption(FijkOption.formatCategory, "packet-buffering", 0);
+    await player.setOption(
+        FijkOption.playerCategory, "enable-accurate-seek", 1);
+    // await player.setOption(FijkOption.formatCategory, "flush_packets", 1);
+    // await player.setOption(FijkOption.formatCategory, "probesize", 1);
+    // await player.setOption(FijkOption.formatCategory, "analyzeduration", 10);
+
     await player.setDataSource(widget.url, autoPlay: true).catchError((e) {
       print("setDataSource error: $e");
     });
+
+    player.setVolume(100);
   }
 
   @override
