@@ -55,9 +55,11 @@ class FijkPlayer extends ChangeNotifier implements ValueListenable<FijkValue> {
   FijkValue get value => _value;
 
   void _setValue(FijkValue newValue) {
+    print("newValue:$newValue");
     if (_value == newValue) return;
     _value = newValue;
     notifyListeners();
+    print("_value:$_value");
   }
 
   Duration _bufferPos = Duration();
