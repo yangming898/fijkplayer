@@ -218,7 +218,7 @@ public class FijkPlayer implements MethodChannel.MethodCallHandler, IjkEventList
 
     private void handleEvent(int what, int arg1, int arg2, Object extra) {
         Map<String, Object> event = new HashMap<>();
-
+      //  Log.e("FijkPlayer","what:"+what+"***arg1"+arg1+"***arg3"+arg2+"extra"+extra);
         switch (what) {
             case PREPARED:
                 event.put("event", "prepared");
@@ -246,6 +246,7 @@ public class FijkPlayer implements MethodChannel.MethodCallHandler, IjkEventList
                 event.put("value", what == BUFFERING_START);
                 mEventSink.success(event);
                 break;
+
 
             // buffer / cache position
             case BUFFERING_UPDATE:
@@ -291,10 +292,12 @@ public class FijkPlayer implements MethodChannel.MethodCallHandler, IjkEventList
                 mEventSink.success(event);
                 break;
             case ERROR:
-                mEventSink.error(String.valueOf(arg1), extra.toString(), arg2);
+
+                mEventSink.error(String.valueOf(arg1), extra!=null?extra.toString():"连接失败", arg2);
+
                 break;
             default:
-                // Log.d("FLUTTER", "jonEvent:" + what);
+
                 break;
         }
     }
