@@ -9,7 +9,7 @@ const List<MediaUrl> samples = [
       title: "Aliyun", url: "http://player.alicdn.com/video/aliyunmedia.mp4"),
   MediaUrl(
       title: "hk",
-      url: "rtsp://admin:DFdf1234@192.168.88.9:554/h264/ch1/sub/av_stream"),
+      url: "rtsp://admin:DFdf1234@120.78.166.154:40212/h264/ch1/sub/av_stream"),
   MediaUrl(
       title: "rtsp",
       url: "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov"),

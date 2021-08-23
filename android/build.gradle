@@ -29,11 +29,11 @@ android {
         disable 'InvalidPackage'
     }
 
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
 }
 
 repositories{
@@ -41,11 +41,12 @@ repositories{
 
 dependencies {
      //implementation fileTree(dir: "libs", include: ["*.aar"])
-     implementation(name: 'ijkplayer-exo-release', ext: 'aar')
-     implementation(name: 'ijkplayer-java-release', ext: 'aar')
+    // implementation(name: 'ijkplayer-exo-release', ext: 'aar')
+    // implementation(name: 'ijkplayer-java-release', ext: 'aar')
+     implementation(name: 'fijkplayer-full-release', ext: 'aar')
    // api "tv.danmaku.ijk.media:ijkplayer-java:0.8.8"
     //api "tv.danmaku.ijk.media:ijkplayer-exo:0.8.8"
     // fijkplayer-full include the java lib and native shared libs for armv5 armv7 arm64 x86 x86_64
-   // implementation 'com.befovy.fijkplayer:fijkplayer-full:0.7.15'
+    //implementation 'com.befovy.fijkplayer:fijkplayer-full:0.7.15'
   //  implementation 'androidx.annotation:annotation:1.2.0'
 }

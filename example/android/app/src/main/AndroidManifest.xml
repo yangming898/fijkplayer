@@ -15,6 +15,7 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="Fijkplayer"
+        tools:replace="android:label"
         tools:ignore="GoogleAppIndexingWarning">
 
         <meta-data
