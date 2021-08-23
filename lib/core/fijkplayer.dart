@@ -55,11 +55,9 @@ class FijkPlayer extends ChangeNotifier implements ValueListenable<FijkValue> {
   FijkValue get value => _value;
 
   void _setValue(FijkValue newValue) {
-    print("newValue:$newValue");
     if (_value == newValue) return;
     _value = newValue;
     notifyListeners();
-    print("_value:$_value");
   }
 
   Duration _bufferPos = Duration();
@@ -501,12 +499,10 @@ class FijkPlayer extends ChangeNotifier implements ValueListenable<FijkValue> {
 
   void _eventListener(dynamic event) {
     final Map<dynamic, dynamic> map = event;
-    print("*****8: ${map}");
     switch (map['event']) {
       case 'prepared':
         int duration = map['duration'] ?? 0;
         Duration dur = Duration(milliseconds: duration);
-        //value.state=;
         _setValue(value.copyWith(duration: dur, prepared: true));
         FijkLog.i("$this prepared duration $dur");
         break;
@@ -519,7 +515,6 @@ class FijkPlayer extends ChangeNotifier implements ValueListenable<FijkValue> {
         int newStateId = map['new'] ?? 0;
         int _oldState = map['old'] ?? 0;
         FijkState fpState = FijkState.values[newStateId];
-        FijkLog.i("***fpState $this rotate degree $fpState");
         FijkState oldState =
             (_oldState >= 0 && _oldState < FijkState.values.length)
                 ? FijkState.values[_oldState]
@@ -543,14 +538,10 @@ class FijkPlayer extends ChangeNotifier implements ValueListenable<FijkValue> {
       case 'rendering_start':
         String type = map['type'] ?? "none";
         if (type == "video") {
-          _setValue(value.copyWith(
-            videoRenderStart: true,
-          ));
+          _setValue(value.copyWith(videoRenderStart: true));
           FijkLog.i("$this video rendering started");
         } else if (type == "audio") {
-          _setValue(value.copyWith(
-            audioRenderStart: true,
-          ));
+          _setValue(value.copyWith(audioRenderStart: true));
           FijkLog.i("$this audio rendering started");
         }
         break;
@@ -590,11 +581,10 @@ class FijkPlayer extends ChangeNotifier implements ValueListenable<FijkValue> {
   }
 
   void _errorListener(Object obj) {
-    print("error$obj");
     final PlatformException e = obj as PlatformException;
     FijkException exception = FijkException.fromPlatformException(e);
     FijkLog.e("$this errorListener: $exception");
-    _setValue(value.copyWith(exception: exception, state: FijkState.error));
+    _setValue(value.copyWith(exception: exception));
   }
 
   @override

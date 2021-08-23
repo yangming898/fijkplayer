@@ -537,7 +537,6 @@ class __FijkPanel2State extends State<_FijkPanel2> {
   Widget buildStateless() {
     var volume = _volume;
     var brightness = _brightness;
-    // print("*****${player.state}");
     if (volume != null || brightness != null) {
       Widget toast = volume == null
           ? defaultFijkBrightnessToast(brightness!, _valController.stream)
@@ -549,8 +548,7 @@ class __FijkPanel2State extends State<_FijkPanel2> {
           child: toast,
         ),
       );
-    } else if (player.state == FijkState.asyncPreparing &&
-        !player.value.prepared) {
+    } else if (player.state == FijkState.asyncPreparing) {
       return Container(
         alignment: Alignment.center,
         child: SizedBox(
