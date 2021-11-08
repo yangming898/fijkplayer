@@ -28,6 +28,11 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
 
 //    sourceSets {
 //        main {
